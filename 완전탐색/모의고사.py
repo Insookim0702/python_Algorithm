@@ -1,36 +1,15 @@
 def solution(answers):
-    a1 = [1, 2, 3, 4, 5]
-    a2 = [2, 1, 2, 3, 2, 4, 2, 5]
-    a3 = [3, 3, 1, 1, 2, 2, 4, 4, 5, 5]
-    a1p = 0
-    a2p = 0
-    a3p = 0
+    student1 = [1, 2, 3, 4, 5]
+    student2 = [2, 1, 2, 3, 2, 4, 2, 5]
+    student3 = [3, 3, 1, 1, 2, 2, 4, 4, 5, 5]
+    score = [0] * 3
     k = 0
     length = len(answers)
-    for i in a1:
-        if i == answers[k]:
-            a1p += 1
-        k +=1
-        if k == length:
-            k = 0
-    k = 0
-    i = 0
-    for i in a2:
-        if i == answers[k]:
-            a2p += 1
-        k += 1
-        if k == length:
-            k = 0
-    k = 0
-    i = 0
-    for i in a3:
-        if i == answers[k]:
-            a3p += 1
-        k += 1
-        if k == length:
-            k = 0
-    a = [a1p, a2p, a3p]
-    result = sorted([(1, a1p), (2, a2p), (3, a3p)], key = lambda x: x[1], reverse=True)
+    for i, v in enumerate(answers):
+        if v == student1[i%len(student1)]: score[0] += 1
+        if v == student2[i%len(student2)]: score[1] += 1
+        if v == student3[i%len(student3)]: score[2] += 1
+    result = sorted([(1, score[0]), (2, score[1]), (3, score[2])], key=lambda x: x[1], reverse=True)
     print(result)
 
     l = [i[0] for i in result if result[0][1] == i[1]]
