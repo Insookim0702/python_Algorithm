@@ -23,8 +23,7 @@ def solution(land, height):
                         py = j
                         break
                 break
-    print(visited)
-    print(groups)
+    print('groups :', groups)
     parent = parent = [i for i in range(0, len(groups))]
 
     re_groups = [[0 for _ in range(size)] for _ in range(size)]
@@ -32,7 +31,7 @@ def solution(land, height):
         for j in groups[i]:
             x,y = j
             re_groups[x][y] = i
-    print(re_groups)
+    print('재구룹화 :',re_groups)
     edges = set()
     #edge구하기
     for i in range(len(re_groups)):
@@ -52,7 +51,7 @@ def solution(land, height):
                         edges.add((cost, (group_num, group_num2)))
     edges = list(edges)
     edges.sort()
-    print(edges)
+    print('edges :',edges)
 
     for edge in edges:
         cost = edge[0]
@@ -61,7 +60,7 @@ def solution(land, height):
             union_parent(parent, a,b)
             result += cost
 
-    # 사다리 올릴 곳 찾기
+
     return result
 
 
@@ -102,5 +101,5 @@ def union_parent(parent, a, b):
         parent[a] = b
 
 
-
+print(solution([[10, 11, 10, 11], [2, 21, 20, 10], [1, 20, 21, 11], [2, 1, 2, 1]], 1)) #18
 print(solution([[1, 4, 8, 10], [5, 5, 5, 5], [10, 10, 10, 10], [10, 10, 10, 20]], 3))

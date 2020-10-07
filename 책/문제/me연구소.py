@@ -24,11 +24,11 @@ def dfs(count):
         return
     for i in range(n):
         for j in range(m):
-            if temp[i][j] == 0:
-                temp[i][j] = 1
+            if data[i][j] == 0:
+                data[i][j] = 1
                 count += 1
                 dfs(count)
-                temp[i][j] = 0
+                data[i][j] = 0
                 count -= 1
 
 

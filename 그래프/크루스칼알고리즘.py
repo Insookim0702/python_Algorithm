@@ -1,9 +1,10 @@
-#특정 원소가 속한 집합을 찾기
+# 특정 원소가 속한 집합을 찾기
 def find_parent(parent, x):
-    #루트 노드가 아니라면, 루트 노드를 찾을 때까지 재귀적으로 호출
+    # 루트 노드가 아니라면, 루트 노드를 찾을 때까지 재귀적으로 호출
     if parent[x] != x:
         parent[x] = find_parent(parent, parent[x])
     return parent[x]
+
 
 # 두 원소가 속한 집합을 합치기
 def union_parent(parent, a, b):
@@ -14,39 +15,40 @@ def union_parent(parent, a, b):
     else:
         parent[a] = b
 
-#노드의 개수와 간선(union)의 개수 입력받기
+# 노드의 개수와 간선(union)의 개수 입력받기
 v, e = map(int, input().split())
-parent = [0] * (v +1) #부모 테이블 초기화
+parent = [0] * (v + 1)  # 부모 테이블 초기화
 print(parent)
 
 # 모든 간선을 담을 리스트와 최종 비용을 담을 변수
-edges =[]
-result =0
+edges = []
+result = 0
 
-#부모테이블상에서, 부모를 자기 자신으로 초기화
-for i in range(1, v+1):
+# 부모테이블상에서, 부모를 자기 자신으로 초기화
+for i in range(1, v + 1):
     parent[i] = i
 
 print(parent)
 # 모든 간선에 대한 정보를 입력받기
 for _ in range(e):
     a, b, cost = map(int, input().split())
-    #비용순ㄴㄴㄴ으로 정렬하기 위해서 튜플의 첫번째  원소를 비용으로 설정
-    edges.append((cost,a,b))
+    # 비용순으로 정렬하기 위해서 튜플의 첫번째  원소를 비용으로 설정
+    edges.append((cost, a, b))
 
-#간선을 비용순으로 정렬
+# 간선을 비용순으로 정렬
 edges.sort()
 
-#간선을 하나씩 확ㅇ인하며
+print(edges)
+
+# 간선을 하나씩 확ㅇ인하며
 for edge in edges:
-    cost, a,b = edge
+    cost, a, b = edge
     ##사이클이 발생하지 않는 경우에만 집합에 포함
-    if find_parent(parent, a) != find_parent(parent,b):
+    if find_parent(parent, a) != find_parent(parent, b):
         union_parent(parent, a, b)
         result += cost
 
-
-print(result)
+print("결과 : ",result)
 # 7 9
 # 1 2 29
 # 1 5 75
@@ -57,4 +59,3 @@ print(result)
 # 4 7 13
 # 5 6 53
 # 6 7 25
-
