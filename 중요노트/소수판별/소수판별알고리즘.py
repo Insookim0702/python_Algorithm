@@ -9,5 +9,4 @@ def is_prime(a):
             return False
     return True
 
-
 print(is_prime(a))
